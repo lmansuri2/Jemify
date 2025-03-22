@@ -29,15 +29,18 @@ def submit():
     userMetal = option.selectedMetal()
     if userMetal == "Gold":
         os.system('jewellerySimulatorGold.py')
+        
     elif userMetal == "Silver":
-        os.system('jewellerySimulatorSilver.py') 
+        os.system('jewellerySimulatorSilver.py')
+         
     else:
         tkinter.messagebox.showinfo(message="Only one option needs to be selected")
         #if both options have been selected
 
-metalvar = tkinter.StringVar() 
 #variable is set because it's value will change depending on user selected metal
+metalvar = tkinter.StringVar() 
 
+#metal type options
 earrings = tkinter.Label(page3, text="Select a metal to design earrings")
 earrings.pack()
 
@@ -51,8 +54,5 @@ submitButton = tkinter.Button(page3, text="Submit", command=submit)
 submitButton.pack()
 
 
-
-
-
-
+#run
 page3.mainloop()
