@@ -4,11 +4,14 @@ import re
 import sqlite3
 from tkinter import *
 import tkinter.messagebox
+import sys
+
 
 page = Tk()
 page.title('Login Page')
 page.geometry('350x440')
 
+#user class
 class user:
         def __init__(self, email, password):
                 self.email = email
@@ -42,11 +45,7 @@ class user:
                 for i in range(0, len(storedEmail)):
                         if self.email == storedEmail:
                                 if self.password == storedPass:
-                                        with open('createProject.py', 'r') as file: #opens register python file
-                                                code = file.read() #reads code within the file
-                                                exec(code)#executes/rules the python file when register button is clicked on
-                                                quit(code)
-                                        #had to quit or else page would keep loading even when exited
+                                       return True
                                 else:
                                         return False
                         elif self.email == "" or self.password == "":
@@ -57,26 +56,24 @@ class user:
                                return invalid
                         else:
                          i = i + 1
-#fetching data
+
+#fetching data from user database
+
 conn = sqlite3.connect('users.db')
 cursor = conn.cursor()
-i = 0 #index
-cursor.execute("SELECT emailAddress FROM UserData") 
-storedEmail = cursor.fetchall()[i][i]
-print(storedEmail) # to see the value stored in the variable in terminal
-cursor.execute("SELECT password FROM UserData")
-storedPass = cursor.fetchall()[i][i]
-print(storedPass)
-conn.commit()
+i = 0 #initial index
+cursor.execute("SELECT emailAddress FROM UserData") #selects email address from table
+storedEmail = cursor.fetchall()[i][i] #stores email address temporarily at that index
+cursor.execute("SELECT password FROM UserData") #selects password from table 
+storedPass = cursor.fetchall()[i][i] #stores password temporarily at that index
+conn.commit() 
 conn.close()
 
-
-
+#function that checks if user inputs matches stored details in database
 def signIn():
     userLogin = user(emailEntry.get(), passwordEntry.get())
-    email = userLogin.validateEmail()
-    password = userLogin.validatePassword()
     compareUser = userLogin.compare() #calling compare() from user class
+    
     #if statement that produces the correct error message depending on issue with user inputs
     if compareUser == False: 
         tkinter.messagebox.showerror(message="Invalid email or password")  
@@ -84,21 +81,20 @@ def signIn():
            tkinter.messagebox.showerror(message="Please make sure both fields have been filled in")  
     elif compareUser == "invalid":
             tkinter.messagebox.showerror(message="Account does not exist")  
+    elif compareUser == True:
+            os.system('createProject.py')
 
 
-
-
+#runs register file when register button is clicked
 def registerPage():
-    with open('register.py', 'r') as file: #opens register python file
-        code = file.read() #reads code within the file
-        exec(code) #executes/rules the python file when register button is clicked on
-
+   os.system('register.py')
+ 
 #creating the login widgets
 loginLabel = tkinter.Label(page, text="Login")
 emailLabel = tkinter.Label(page, text="Email")
 emailEntry = tkinter.Entry(page)
 passwordLabel = tkinter.Label(page, text="Password")
-passwordEntry = tkinter.Entry(page, show="*")
+passwordEntry = tkinter.Entry(page, show='*')
 loginButton = tkinter.Button(page, text="Sign in", command=signIn)
 RegisterButton = tkinter.Button(page, text="Register", command=registerPage)
 
@@ -111,5 +107,5 @@ passwordLabel.grid(row=3, column=0)
 passwordEntry.grid(row=3, column=1)
 loginButton.grid(row=4, column=0, columnspan=2)
 
-
+#run
 page.mainloop()
