@@ -11,13 +11,39 @@ page2.title('Register Page')
 page2.geometry('350x440')
 
 
-#user class
-class user:
+#User class
+class User:
+        """
+        A class to represent the user's account details
+
+        Attributes:
+        email (str): The user's email address
+        password (str): The user's password
+
+        Methods:
+        validateEmail(): Checks if the inputted email address is in the correct format and valid
+        validatePassword(): Checks if the inputted password has a valid character length
+        """
         def __init__(self, email, password):
+                """
+                Initialises the User object's attributes
+
+                Args:
+                email (str): The user's email address
+                password (str): The user's password
+
+                """
                 self.email = email
                 self.password = password        
         def validateEmail(self):#method that checks that entered email is valid
+                """
+                Checks if the inputted email address is in the correct format and valid
 
+                Returns:
+                bool or str: 
+                bool: False if the emailAddress variable is empty or if it is not in the correct format
+                str: The user's input for their email address
+                """
                 emailAddress = self.email
                 emailFormat = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
@@ -36,6 +62,14 @@ class user:
                 #it is valid then email address is returned
 
         def validatePassword(self):
+                """
+                Checks if the inputted password has a valid character length
+
+                Returns:
+                bool or str:
+                bool: False if password is less than the valid character length
+                str: The user's input for their password
+                """
                 password = self.password
                 if len(password) < 6:
                        
@@ -46,13 +80,17 @@ class user:
 
 
 def signUp():
-        newUser = user(emailEntry.get(), passwordEntry.get())
+        """
+        Creates the user's account if both their inputs are valid by storing their details
+        onto the database
+        """
+        
+        newUser = User(emailEntry.get(), passwordEntry.get())
         email = newUser.validateEmail()
         password = newUser.validatePassword()
 
         if email == False or password == False:
-                tkinter.messagebox.showerror(title="Invalid Email/Password", message="Please make sure your "
-                " email address is in the correct format or password is at least 6 characters long") 
+                tkinter.messagebox.showerror(title="Invalid Email/Password", message="Please make sure your email address is in the correct format or password is at least 6 characters long") 
         else:
                 #Create Table for users
                 conn = sqlite3.connect('users.db') #below checks if userData table exists
@@ -101,7 +139,7 @@ passwordEntry.grid(row=3, column=1)
 createAccountButton.grid(row=4, column=0, columnspan=2)
 
 #user object from user class
-newUser = user(emailEntry.get(), passwordEntry.get())
+newUser = User(emailEntry.get(), passwordEntry.get())
 
 
 
