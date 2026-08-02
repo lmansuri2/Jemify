@@ -16,4 +16,4 @@ A Python application engineered to facilitate interactive customisation and visu
 ## How to Run the Code Locally
 1. Clone this repository: `git clone https://github.com/lmansuri2/Jemify.git`
 2. Ensure you have Python and the necessary dependencies installed: `pip install pillow`
-3. Launch the primary interface script: `python login.py` (or your entry point file name)
+3. Launch the primary interface script: `python login.py`
