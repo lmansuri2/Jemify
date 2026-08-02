@@ -9,7 +9,7 @@ A Python application engineered to facilitate interactive customisation and visu
 * **Data Persistence:** Integrated relational database engine powered by SQL querying
 
 ## Key Engineering Features
-* **Secure Authentication:** Built a robust user validation and login subsystem driven by secure backend database checks.
+* **Secure Authentication:** Built a user validation and login subsystem driven by backend database checks.
 * **Dynamic Rendering:** Implemented digital canvas logic to allow real-time asset changes based on active user configurations.
 * **Relational Storage:** Formatted a custom database layer to manage user credentials.
 
