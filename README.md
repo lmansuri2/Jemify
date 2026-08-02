@@ -15,5 +15,6 @@ A Python application engineered to facilitate interactive customisation and visu
 
 ## How to Run the Code Locally
 1. Clone this repository: `git clone https://github.com/lmansuri2/Jemify.git`
-2. Ensure you have Python and the necessary dependencies installed: `pip install pillow`
-3. Launch the primary interfaces scripts: `python jewellerySimulatorSilver.py` or `python jewellerySimulatorGold.py`
+2. Navigate into the project folder: `cd Jemify/python`
+3. Ensure you have Python and the necessary dependencies installed: `pip install pillow`
+4. Launch the primary interfaces scripts: `python jewellerySimulatorSilver.py` or `python jewellerySimulatorGold.py`
