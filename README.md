@@ -14,6 +14,6 @@ A desktop software solution engineered using **Python** to facilitate interactiv
 * **Relational Storage:** Formatted a custom database layer to manage user credentials.
 
 ## How to Run the Code Locally
-1. Clone this repository: `git clone https://github.com`
+1. Clone this repository: `git clone https://github.com/lmansuri2/Jemify.git`
 2. Ensure you have Python and the necessary dependencies installed: `pip install Pillow`
-3. Launch the primary interface script: `python main.py` (or your entry point file name)
+3. Launch the primary interface script: `python login.py` (or your entry point file name)
